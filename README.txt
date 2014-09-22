@@ -1,0 +1,1 @@
+Ovo je inicijalna git hub verzija Heintel sajta!
