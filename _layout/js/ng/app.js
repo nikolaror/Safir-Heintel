@@ -1,62 +1,77 @@
 var myApp = angular.module('myApp', []);
-jsonObject = {
-    "row1": [
-    {
-	id:1,
-    title: "proizvod 555",
-	img_src:"_content/portfolio/220x217-5.png",
-	url:"_content/portfolio/220x217-5.png"
-  }, 
-  {
-	id:2,
-    title: "proizvod 444",
-	img_src:"_content/portfolio/220x217-4.png",
-	url:"_content/portfolio/220x217-4.png"
-  },
-  {
-	id:3,
-    title: "proizvod 333",
-	img_src:"_content/portfolio/220x217-3.png",
-	url:"_content/portfolio/220x217-3.png"
-  },
-  {
-	id:4,
-    title: "proizvod 222",
-	img_src:"_content/portfolio/220x217-2.png",
-	url:"_content/portfolio/220x217-2.png"
-  }],
-    "row2": [
-    {
-	id:5,
-    title: "proizvod 111",
-	img_src:"_content/portfolio/220x217-1.png",
-	url:"_content/portfolio/220x217-1.png"
-  }],
-  };
-myApp.controller("portfolioCtrl", function($scope, $http, getJson){
-  $scope.product = {
-	id:1,
-    title: "proizvod 111",
-	img_src:"_content/portfolio/220x217-5.png",
-	url:"_content/portfolio/220x217-1.png"
-  };
+myApp.controller('portfolioCtrl', function($scope, jsonFactory) {
+
+$scope.number = 2;
+$scope.getNumber = function(num) {
+    return new Array(num);   
+}
+   $scope.ukupno = {};
    $scope.portfolio ={};
-   $scope.portfolio = jsonObject;
-   ////////////////
-     
-				
-            
-   /////////////////////http://leftshift.io/8-tips-for-angular-js-beginners////////
+   $scope.lista ={};
+
+   jsonFactory.getJSONAsync(function(results) {
+    $scope.portfolio = results;
+	$scope.ukupno = Object.keys(results).length;
+	  });
+	/////////////////
+	/*jsonFactory.getSL(function($scope.portfolio) {
+			$scope.lista = $scope.portfolio;
+	  });*/
+	/*
+var rawData = {"0":{"school_name":"FAKE ELEMENTARY"},
+                         "1":{"school_name":"CENTRAL HIGH"},
+                         "2":{"school_name":"OAK RIDGE ELEMENTARY"},
+                         "3":{"school_name":"PINE MEADOW ELEMENTARY"},
+                         "4":{"school_name":"AMERICAN MIDDLE"},
+                         "5":{"school_name":"BIG SENIOR HIGH"},
+                         "6":{"school_name":"ST FRANCIS ELEMENTARY SCHOOL"}
+                         };*/
+    
+	
+	
+	
+	
+	
+	/////////////////
+	/////////////////
+	/*    $scope.currentPage = 1;
+    $scope.pageSize = 10;
+	$scope.numberOfPages=function(){
+        return Math.ceil(ukupno/pageSize);                
+    }*/
+	/////////
+});
+myApp.factory('jsonFactory', function($http) {
+  return {
+    getJSONAsync: function(callback) {
+      $http.get('_layout/js/ng/portfolio.json').success(callback).error(function(){
+				alert("greska");
+				});
+    },
+	getSL:function(portfolio) {
+    var hasData = true;
+    var idx = 0;
+    var schoolList = [];
+    while(hasData){
+        data = portfolio[idx];
+        if (data){
+            schoolList.push(data);
+            idx++;
+        }
+        else{
+            hasData=false;
+        }
+		}
+		portfolio = schoolList;
+		return portfolio;
+	}
+  };
 });
 
 
-app.factory("getJson", function($http) {
-var json = {};
-var modify = {};
-  var modify.addItem = function(item) {
-json = $http.get('portfolio.json').success (function(data){
-                $scope.guitarVariable = data;
-				return json;})
-				}
-  return json;
-  });
+
+myApp.filter('slicce', function() {
+  return function(arr, start, end) {
+    return (arr || []).slice(start, end);
+  };
+});

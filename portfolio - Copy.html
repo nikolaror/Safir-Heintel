@@ -402,10 +402,10 @@
 	<script src="_layout/js/ng/angular.min.js"></script>	
 	<script src="_layout/js/ng/app.js"></script>
 			<!--////////////////////////////////////////-->
-			< <span>total objects:{{ukupno}}.broj stranica:{{lista}}</span>	
+			<!-- <span>total objects:{{ukupno}}.broj stranica:{{schoolList}}</span> -->	
 			<!--div class="row" ng-repeat="p in portfolio | startFrom:currentPage*pageSize | limitTo:pageSize"-->
-			<div class="row" ng-repeat="p in getNumber(number) track by $index">
-					<div class="span3" ng-repeat="pp in portfolio | limitTo:2">
+			<div class="row" ng-repeat="p in portfolio">
+					<div class="span3" ng-repeat="pp in p" >
 					<div class="portfolio-item">
                         <div class="portfolio-item-preview">					
                             <a href="#">
