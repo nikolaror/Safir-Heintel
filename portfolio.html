@@ -404,6 +404,9 @@
 			<!--////////////////////////////////////////-->
 			< <span>total objects:{{ukupno}}.broj stranica:{{lista}}</span>	
 			<!--div class="row" ng-repeat="p in portfolio | startFrom:currentPage*pageSize | limitTo:pageSize"-->
+			<div class="row" ng-repeat="school in schoolList | limitTo:4">
+            {{school.title}}
+			</div>
 			<div class="row" ng-repeat="p in getNumber(number) track by $index">
 					<div class="span3" ng-repeat="pp in portfolio | limitTo:2">
 					<div class="portfolio-item">
