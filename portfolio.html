@@ -13,7 +13,10 @@
     <!-- /// Favicons ////////  -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
     <link rel="shortcut icon" href="favicon.png">
-
+	<!-- /// AngularJS ////////  -->
+	<script src="_layout/js/ng/angular.min.js"></script>	
+	<script src="_layout/js/ng/app.js"></script>
+			<!--////////////////////////////////////////-->
 
 	<!-- /// Template CSS ////////  -->
     <link rel="stylesheet" href="_layout/css/base.css">
@@ -304,9 +307,8 @@
 
 		</div><!-- end #header -->
 		<div id="content" ng-app="myApp" ng-controller="portfolioCtrl">
-		
 		<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-			
+
             <div id="page-header">
             	
                 <div class="row">
@@ -398,17 +400,12 @@
                 </div><!-- end .span6 -->
             </div><!-- end .row -->
 <!-- moj proizvod .row -->
-	<!-- /// AngularJS ////////  -->
-	<script src="_layout/js/ng/angular.min.js"></script>	
-	<script src="_layout/js/ng/app.js"></script>
-			<!--////////////////////////////////////////-->
-			< <span>total objects:{{ukupno}}.broj stranica:{{lista}}</span>	
+
+			<!--span>total objects:{{ukupno}}.broj stranica:{{lista}}</span-->	
 			<!--div class="row" ng-repeat="p in portfolio | startFrom:currentPage*pageSize | limitTo:pageSize"-->
-			<div class="row" ng-repeat="school in schoolList | limitTo:4">
-            {{school.title}}
-			</div>
-			<div class="row"><!-- ng-repeat="p in getNumber(number) track by $index"-->
-					<div class="span3" ng-repeat="pp in schoolList>
+			<div class="row" ng-repeat="p in getNumber(number) track by $index">
+			{{setIndex($index)}}
+				<div class="span3" ng-repeat="pp in portfolio | slicce:rowValue:rowValue | orderBy:pp.id">
 					<div class="portfolio-item">
                         <div class="portfolio-item-preview">					
                             <a href="#">
@@ -426,6 +423,7 @@
                             </div><!-- end .portfolio-item-overlay -->
                         </div><!-- end .portfolio-item-preview -->
                     </div><!-- end .portfolio-item -->
+				</div>
 			</div>
 			</div>
 			<!--////////////////////////////////////////-->   

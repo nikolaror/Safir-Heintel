@@ -1,43 +1,42 @@
 var myApp = angular.module('myApp', []);
+
+myApp.filter('slicce', function() {
+  return function(arr, start, end) {
+  if(arr.length > 0){
+		return (arr || []).slice(start*4, end*4+4);
+		//return arr.slice(start*4, end*4+4);
+	}
+	else{arr=[];}
+  };
+});
 myApp.controller('portfolioCtrl', function($scope, jsonFactory) {
-//////////////////////////////////////
-   var rawData = {
-    "0": {
-        "id": 1,
-        "title": "proizvod 55555",
-        "img_src": "_content/portfolio/220x217-5.png",
-        "url": "_content/portfolio/220x217-5.png"
-    },
-    "1": {
-        "id": 2,
-        "title": "proizvod 4404",
-        "img_src": "_content/portfolio/220x217-4.png",
-        "url": "_content/portfolio/220x217-4.png"
-    },
-    "2": {
-        "id": 3,
-        "title": "proizvod 333",
-        "img_src": "_content/portfolio/220x217-3.png",
-        "url": "_content/portfolio/220x217-3.png"
-    },
-    "3": {
-        "id": 4,
-        "title": "proizvod 222",
-        "img_src": "_content/portfolio/220x217-2.png",
-        "url": "_content/portfolio/220x217-2.png"
-    },
-    "4": {
-        "id": 5,
-        "title": "proizvod 111",
-        "img_src": "_content/portfolio/220x217-1.png",
-        "url": "_content/portfolio/220x217-1.png"
-    }
-};
-    var hasData = true;
+
+$scope.rowValue = 0;
+$scope.setIndex = function(num) {
+	$scope.rowValue = num;
+}
+$scope.getRowValue = function() {
+	return $scope.rowValue;
+}
+
+$scope.number = 4;
+$scope.getNumber = function(num) {
+    return new Array(num);   
+}
+
+   $scope.ukupno = {};
+   $scope.portfolio ={};
+   jsonFactory.getJSONAsync(function(results) {
+    $scope.portfolio = results;
+	$scope.ukupno = Object.keys(results).length;
+	  });
+
+	var hasData = true;
     var idx = 0;
-    $scope.schoolList = [];
+    $scope.schoolList = [];	  
     while(hasData){
-        var data = rawData[idx];
+        //var data = rawData[idx];////////promena
+		var data = $scope.portfolio[idx];//rawData[idx];////////promena
         if (data){
             $scope.schoolList.push(data);
             idx++;
@@ -46,30 +45,7 @@ myApp.controller('portfolioCtrl', function($scope, jsonFactory) {
             hasData=false;
         }
     }
-///////////////////////////////////
-
-
-
-
-
-$scope.number = 4;
-$scope.getNumber = function(num) {
-    return new Array(num);   
-}
-   $scope.ukupno = {};
-   $scope.portfolio ={};
-   jsonFactory.getJSONAsync(function(results) {
-    $scope.portfolio = results;
-	$scope.ukupno = Object.keys(results).length;
-	  });
-});
-
-
-function myCtrl($scope){
- 
-}
-
-
+});//////////end of controller///////
 
 myApp.factory('jsonFactory', function($http) {
   return {
@@ -77,31 +53,22 @@ myApp.factory('jsonFactory', function($http) {
       $http.get('_layout/js/ng/portfolio.json').success(callback).error(function(){
 				alert("greska");
 				});
+				return callback;
     },
-	getSL:function(portfolio) {
-    var hasData = true;
-    var idx = 0;
-    var schoolList = [];
-    while(hasData){
-        data = portfolio[idx];
-        if (data){
-            schoolList.push(data);
-            idx++;
-        }
-        else{
-            hasData=false;
-        }
-		}
-		portfolio = schoolList;
-		return portfolio;
+	getCustomers:function() {
+		var promise = $http({
+			method : 'POST',
+			url : '_layout/js/ng/portfolio.json'
+		}).success(function(data, status, headers, config) {
+			$log.log('Done');
+			angular.forEach(data, function(c) {
+				$log.log(c.firstName);
+			});
+			customers = data;
+			return customers;
+		});    
+
+		return promise; 
 	}
-  };
-});
-
-
-
-myApp.filter('slicce', function() {
-  return function(arr, start, end) {
-    return (arr || []).slice(start, end);
   };
 });
