@@ -11,12 +11,21 @@ myApp.filter('slicce', function() {
 
 myApp.controller('portfolioCtrl', function($scope, jsonFactory) {
 $scope.rowValue = 0;
-$scope.setIndex = function(num) {
+$scope.setRowValue = function(num) {
 	$scope.rowValue = num;
 }
 $scope.getRowValue = function() {
 	return $scope.rowValue;
 }
+////////////////////
+$scope.selected = 1;
+$scope.setPage = function(index) {
+	$scope.selected = index;
+}
+$scope.isSelected = function(index) {
+    return $scope.selected === index;
+}
+///////////////////
 $scope.number = 4;
 $scope.getNumber = function(num) {
     return new Array(num);   
@@ -26,20 +35,26 @@ $scope.portfolio ={};
 jsonFactory.getJSONAsync(function(results) {
     $scope.portfolio = results;
 	$scope.ukupno = Object.keys(results).length;
-	  });
-	var hasData = true;
-    var idx = 0;
-    $scope.schoolList = [];	  
-    while(hasData){
-		var data = $scope.portfolio[idx];
-        if (data){
-            $scope.schoolList.push(data);
-            idx++;
-        }
-        else{
-            hasData=false;
-        }
-    }
+	console.log("uzimam objekat")
+});
+$scope.getPagesNumber = function() {
+	var pagesNo = Math.ceil($scope.ukupno/16);
+	console.log("to je "+pagesNo);
+	return new Array(pagesNo);   
+}
+/*var hasData = true;
+var idx = 0;
+$scope.schoolList = [];	  
+while(hasData){
+	var data = $scope.portfolio[idx];
+	if (data){
+		$scope.schoolList.push(data);
+		idx++;
+	}
+	else{
+		hasData=false;
+	}
+}*/
 });//////////end of controller///////
 
 myApp.factory('jsonFactory', function($http) {
@@ -52,3 +67,11 @@ myApp.factory('jsonFactory', function($http) {
     }
   };
 });
+/*
+myApp.factory('pagesFactory', function($http) {
+  return {
+    getPagesNumber: function(callback) {
+		return
+    }
+  };
+});*/

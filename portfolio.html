@@ -59,7 +59,7 @@
 		</p>
     <![endif]-->
  
-	<div id="wrap">
+	<div id="wrap" ng-app="myApp" ng-controller="portfolioCtrl">
     
     	<div id="header-top">
         
@@ -306,7 +306,7 @@
 		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 		</div><!-- end #header -->
-		<div id="content" ng-app="myApp" ng-controller="portfolioCtrl">
+		<div id="content" >
 		<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
             <div id="page-header">
@@ -400,11 +400,8 @@
                 </div><!-- end .span6 -->
             </div><!-- end .row -->
 <!-- moj proizvod .row -->
-
-			<!--span>total objects:{{ukupno}}.broj stranica:{{lista}}</span-->	
-			<!--div class="row" ng-repeat="p in portfolio | startFrom:currentPage*pageSize | limitTo:pageSize"-->
 			<div class="row" ng-repeat="p in getNumber(number) track by $index">
-			{{setIndex($index)}}
+			{{setRowValue($index)}}
 				<div class="span3" ng-repeat="pp in portfolio | slicce:rowValue:rowValue | orderBy:pp.id">
 					<div class="portfolio-item">
                         <div class="portfolio-item-preview">					
@@ -426,34 +423,17 @@
 				</div>
 			</div>
 			</div>
-			<!--////////////////////////////////////////-->   
-<!--div class="row">
-    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
-        Previous
-    </button>
-    {{currentPage+1}}/{{numberOfPages()}}
-    <button ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
-        Next
-    </button>
-</div-->			
+			<!--////////////////////////////////////////-->   		
             <div class="row">
             	<div class="span12">
                 	<ul class="pagination fixed">
-                    	<li class="current">
-                        	<a href="#">1</a>
-                        </li>
-                        <li>
-                        	<a href="#">2</a>
-                        </li>
-                        <li>
-                        	<a href="#">3</a>
-                        </li>
-                        <li>
-                        	<a href="#">4</a>
-                        </li>
+                    	<li ng-class="{current : isSelected($index+1)}" ng-repeat="p in getPagesNumber() track by $index">
+                        	<a href="#" ng-click="setPage($index+1 ,$event)">{{$index+1}}</a>
+                        </li>   
                     </ul>
                 </div><!-- end .span12 -->
             </div><!-- end .row -->
+
 		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 		</div><!-- end #content -->
