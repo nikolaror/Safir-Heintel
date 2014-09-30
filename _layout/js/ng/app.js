@@ -9,7 +9,7 @@ myApp.filter('slicce', function() {
   };
 });
 
-myApp.controller('portfolioCtrl', function($scope, $location, $anchorScroll, $timeout, $q, $interval, jsonFactory) {
+myApp.controller('portfolioCtrl', function($scope, $location, $anchorScroll, $interval, jsonFactory) {
 $scope.rowValue = 0;
 $scope.setRowValue = function(num) {
 	$scope.rowValue = num;
@@ -23,11 +23,12 @@ $scope.myValue = true;
 $scope.setPage = function(index) {
 	$scope.myValue = false;
 	if ( angular.isDefined(stop) ) return;
-	
-	stop = $interval(function() {
-	$scope.selected = index;
 	$location.hash('gallery');
 	$anchorScroll();
+	$scope.selected = index;	
+	stop = $interval(function() {
+
+
 	$scope.stopTimer();
     }, 500);  
 }
@@ -50,14 +51,6 @@ $scope.isSelected = function(index) {
 }
 
 $scope.number = 4;
-/*$scope.getNumber = function(num) {
-	$scope.arr = [];
-	for(var i = 5; i <= $scope.number; i++){
-        $scope.arr.push(i);
-    }
-	console.log("arr je:"+$scope.arr);
-    return $scope.arr;   
-}*/
 $scope.getNumber = function(num) {
     return new Array(num);   
 }
