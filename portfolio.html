@@ -400,9 +400,21 @@
                 </div><!-- end .span6 -->
             </div><!-- end .row -->
 <!-- moj proizvod .row -->
-			<div class="row" ng-repeat="p in getNumber(number) track by $index">
+			<div class="row">
+				<div class="span4">
+				&nbsp;
+				</div>
+				<div class="span4">
+					<span id = "gallery" visible="false"></span>
+					<img ng-hide="myValue" src="_layout/images/ajax-loader.gif"></img>
+				</div>
+				<div class="span4">
+				&nbsp;
+				</div>
+			</div>
+			<div ng-show="myValue" class="row" ng-repeat="p in getNumber(number) track by $index">
 			{{setRowValue($index)}}
-				<div class="span3" ng-repeat="pp in portfolio | slicce:rowValue:rowValue | orderBy:pp.id">
+				<div class="span3" ng-repeat="pp in portfolio | slicce:rowValue:selected | orderBy:pp.id">
 					<div class="portfolio-item">
                         <div class="portfolio-item-preview">					
                             <a href="#">
@@ -423,12 +435,12 @@
 				</div>
 			</div>
 			</div>
-			<!--////////////////////////////////////////-->   		
+			<!--////////////////////////////////////////--> 		
             <div class="row">
             	<div class="span12">
                 	<ul class="pagination fixed">
                     	<li ng-class="{current : isSelected($index+1)}" ng-repeat="p in getPagesNumber() track by $index">
-                        	<a href="#" ng-click="setPage($index+1 ,$event)">{{$index+1}}</a>
+                        	<a href="" ng-click="setPage($index+1 ,$event)">{{$index+1}}</a>
                         </li>   
                     </ul>
                 </div><!-- end .span12 -->
