@@ -39,64 +39,45 @@ $scope.stopTimer = function() {
 		$scope.myValue = true;
       }
 };
-
+/*
+$scope.setPage = function(index) {
+	$scope.selected = index;
+	$location.hash('gallery');
+	$anchorScroll();
+}
+*/
 $scope.isSelected = function(index) {
     return $scope.selected === index;
 }
 
-$scope.number = jsonFactory.getNumber();
+$scope.number = 4;
 $scope.getNumber = function(num) {
-    return jsonFactory.getNumberArray(num);
+    return new Array(num);   
 }
-
-
-
-$scope.ukupno = 0;//Object.keys(jsonFactory.callback).length;
+$scope.ukupno = Object.keys(jsonFactory.callback).length;
 $scope.portfolio ={};
-$scope.ukupno = jsonFactory.getUkupno();//Object.keys(jsonFactory.callback()).length;
-$scope.portfolio ={};
-jsonFactory.getJSONAsync(function(results) { 
+jsonFactory.getJSONAsync(function(results) { 	
 	$scope.portfolio = results;
 	$scope.ukupno = Object.keys(results).length;
 });
 
 $scope.getPagesNumber = function() {
-	return jsonFactory.getPagesNo($scope.ukupno); 
+	var pagesNo = Math.ceil($scope.ukupno/16);
+	return new Array(pagesNo);   
 }
 });//////////end of controller///////
 
 myApp.factory('jsonFactory', function($http) {
-	var callback=[];
-	var service = {};
-	var number = 4;
-	var portfolio =[];
-	var ukupno = 0;
-
-	service.getNumberArray = function(num){
-			return new Array(num); 
-	},
-	service.getNumber = function(){
-			return number;
-	},
-	service.getPortfolio = function(){
-		service.getJSONAsync(service.portfolio);
-		return portfolio;
-	},
-	service.getUkupno = function(){
-		ukupno = Object.keys(portfolio).length;
-		return ukupno;
-	},
-	service.callback = function(){
+  var callback=[];
+  return {
+	  callback: function(){
 		return callback;
 	},
-	service.getPagesNo = function(pagesno){
-		var pagesNo = Math.ceil(pagesno/16);
-		return new Array(pagesNo);
-	},
-	service.getJSONAsync = function(callback) {
-	  $http.get('_layout/js/ng/portfolio.json').success(callback).error(function(){alert("greska");});
-	  return callback;
-	};
-	return service;
-
+    getJSONAsync: function(callback) {
+      $http.get('_layout/js/ng/portfolio.json').success(callback).error(function(){
+				alert("greska");
+				});
+				return callback;
+    }
+  };
 });
