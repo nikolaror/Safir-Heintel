@@ -1,0 +1,83 @@
+						<!--li ng-repeat="item in items" ng-class="{'current': item.id == states.activeItem}" ng-click="states.activeItem=item.id"><a ng-href="{{item.title}}">{{item.title}}</a></li-->
+					
+					
+					
+					
+					
+					
+					
+					ng-app="myApp" ng-controller="menuCtrl"
+					
+					ng-click="setItem(item.id)"
+					
+					
+					ng-class="{'current': getItem(item.id, states.activeItem)}"
+					
+					
+					
+					
+<li ng-repeat="item in items" ng-class="{'current': item.id == states.activeItem}" ng-click="setItem(item.id)">	
+
+
+
+
+/*
+myApp.service('menuService', function() {///////////menu Service
+       // Must use a wrapper object, otherwise "activeItem" won't work
+    var states = {};
+    states.activeItem = 'item1';
+    var items = [{
+        id: 'item1',
+        title: 'POČETAK',
+		link:'index.html'
+    }, {
+        id: 'item2',
+        title: 'PROFIL',
+		link:'profil.html'
+    }, {
+        id: 'item3',
+        title: 'PORTFOLIO',
+		link:'portfolio.html'
+    }, {
+        id: 'item4',
+        title: 'O NAMA',
+		link:'onama.html'
+    },{
+        id: 'item5',
+        title: 'KONTAKT',
+		link:'kontakt.html'
+    }];
+	/*this.getItem = function(item, states)
+	{console.log("item"+item+"false"+states);
+		if(item == states)
+		{ console.log("NIKOLA"+states);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	};
+	this.setItem = function(item)
+	{
+		$scope.states.activeItem = item;
+		
+	};*/
+	/*this.getActiveItemItem = function()
+	
+	
+	
+	
+	
+	{	console.log("states.activeItem"+states.activeItem);
+		return  states.activeItem;	
+	};
+	this.getItems = function()
+	{	
+		return  items;	
+	};
+	this.setItem = function(item)
+	{		console.log("item"+item);
+		states.activeItem = item;
+	};
+});//////////end of service

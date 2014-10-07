@@ -46,7 +46,7 @@
 <link rel="stylesheet" type="text/css" href="_layout/js/switcher/switcher.css">
  
 </head>
-<body>
+<body ng-app="myApp">
 
 	<!--[if lte IE 8]>
         <p class="browser-update">
@@ -57,97 +57,9 @@
     <![endif]-->
  
 	<div id="wrap">
-    
-    	<div id="header-top">
-        
-        <!-- /// HEADER TOP  //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        
-            <div class="row">
-                <div class="span6" id="header-top-widget-area-1">
-                    
-                    <div class="widget widget_text">
-                    
-                        <div class="textwidget">
-                        </div><!-- end .text -->
-                    
-                    </div><!-- end .widget_text -->
-                    
-                </div><!-- end .span6 -->
-                <div class="span6 text-right" id="header-top-widget-area-2">
-                    
-                    <div class="widget ewf_widget_social_media">
-                        	
-                        <div class="fixed">
-                            
-                            <a href="#" class="facebook-icon social-icon">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a href="#" class="twitter-icon social-icon">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a href="#" class="googleplus-icon social-icon">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                            <a href="#" class="pinterest-icon social-icon">
-                                <i class="fa fa-pinterest"></i>
-                            </a>
-                            <a href="#" class="youtube-icon social-icon">
-                                <i class="fa fa-youtube"></i>
-                            </a>
-                            
-                        </div>
-                        
-                    </div><!-- end .widget_social_media -->
-                    
-                </div><!-- end .span6 -->
-            </div><!-- end .row -->
-            
-        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            
-        </div><!-- end #header-top -->
-		<div id="header">
-        
-		<!-- /// HEADER  //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            
-            <div class="row">
-				<div class="span3">
-				
-					<!-- // Logo // -->
-					<a href="index.html" id="logo">
-                    	<img src="_layout/images/logo.png" alt="" class="responsive-img">
-                    </a>
-				
-				</div><!-- end .span3 -->
-				<div class="span9">
-				
-                	<!-- // Mobile menu trigger // -->
-                	<a href="#" id="mobile-menu-trigger">
-                    	<i class="fa fa-bars"></i>
-                    </a>
-                    
-					<!-- // Menu // -->
-					<ul class="sf-menu" id="menu">
-						<li >
-                        	<a href="index.html">POČETAK</a>
-						</li>
-						<li>
-                        	<a href="profil.html">PROFIL</a>
-						</li>
-						<li>
-                        	<a href="onama.html">O NAMA</a>
-						</li>
-						<li class="current">
-                        	<a href="kontakt.html">KONTAKT</a>
-						</li>
-					</ul>
-
-				</div><!-- end .span9 -->
-			</div><!-- end .row -->		
-
-		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
-		</div><!-- end #header -->
+        <!--header-->
+		<div ng-include="'template/header.html'" onLoad="type='kontakt'"></div>
+		<!--end header-->
 		<div id="content">
 		
 		<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -266,70 +178,14 @@
 
 		</div><!-- end #content -->
 		<div id="footer">
-
-
-		<!-- /// FOOTER     ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-			
-            
-            <div id="footer-bottom">
-            				<br><br>
-            <!-- /// FOOTER BOTTOM  ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            	
-                <div class="row">
-                	<div class="span6" id="footer-bottom-widget-area-1">
-                    
-						<div class="widget widget_text">
-                        
-                            <div class="textwidget">
-                                <p class="last">
-                                	<img src="_layout/images/logo.png" alt="" class="responsive-img">
-                                    <span class="hidden-tablet hidden-phone">Copyright &copy; 2014 iDuk</span>
-                                </p>
-                            </div><!-- end .textwidget -->
-                            
-                        </div><!-- end .widget_text -->
-                    
-                    </div><!-- end .span6 -->
-                    <div class="span6 text-right" id="footer-bottom-widget-area-2">
-                    
-						<div class="widget ewf_widget_social_media">
-                        	
-                            <div class="fixed">
-                            	
-                                <a href="#" class="facebook-icon social-icon">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                                <a href="#" class="twitter-icon social-icon">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                                <a href="#" class="googleplus-icon social-icon">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                                <a href="#" class="pinterest-icon social-icon">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                                <a href="#" class="youtube-icon social-icon">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                                
-                            </div>
-                            
-                        </div><!-- end .widget_social_media -->
-                    
-                    </div><!-- end .span6 -->
-                </div><!-- end .row -->
-                
-            <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-            	
-            </div><!-- end #footer-bottom -->
-            
-		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
+			<footer></footer>
 		</div><!-- end #footer -->
-		
 	</div><!-- end #wrap -->
 
-
+			<!-- /// AngularJS ////////  -->
+	<script src="_layout/js/ng/angular.min.js"></script>	
+	<script src="_layout/js/ng/app.js"></script>
+	<!--////////////////////////////////////////-->
     <!-- /// jQuery ////////  -->
 	<script src="_layout/js/jquery-2.1.0.min.js"></script>
   

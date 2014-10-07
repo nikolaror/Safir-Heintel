@@ -1,4 +1,28 @@
 var myApp = angular.module('myApp', []);
+///////route
+/*myApp.config(function($routeProvider, $locationProvider) {
+//$locationProvider.html5Mode(true);
+$routeProvider.when("/home", {
+    templateUrl: "index.html",
+	controller:function(){
+            console.log('controller');
+      }
+});
+$routeProvider.when("/portfolio", {
+    templateUrl: "portfolio.html",
+	controller:function(){
+            console.log('controller');
+      }
+});
+$routeProvider.otherwise({ redirectTo: '/portfolio'});
+});///////
+*/
+myApp.directive("footer", function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'template/footer.html'
+    }
+});
 
 myApp.filter('slicce', function() {
   return function(arr, start, end) {
@@ -8,8 +32,38 @@ myApp.filter('slicce', function() {
 	else{arr=[];}
   };
 });
-
-myApp.controller('portfolioCtrl', function($scope, $location, $anchorScroll, $interval, jsonFactory) {
+///////////////menu controller
+myApp.controller('menuCtrl', function ($scope) {
+$scope.getPartial = function () {
+console.log('pera.html');
+          return 'pera.html';
+      }
+    $scope.states = {};
+    $scope.states.activeItem = 'index';
+    $scope.items = [{
+        id: 'index',
+        title: 'POČETAK',
+		link:'index.html'
+    }, {
+        id: 'profil',
+        title: 'PROFIL',
+		link:'profil.html'
+    }, {
+        id: 'portfolio',
+        title: 'PORTFOLIO',
+		link:'portfolio.html'
+    }, {
+        id: 'onama',
+        title: 'O NAMA',
+		link:'onama.html'
+    },{
+        id: 'kontakt',
+        title: 'KONTAKT',
+		link:'kontakt.html'
+    }];
+});
+//////////////end of menu controller
+myApp.controller('portfolioCtrl', function($scope, $location, $anchorScroll, $interval, $document, $location, jsonFactory) {
 $scope.rowValue = 0;
 $scope.setRowValue = function(num) {
 	$scope.rowValue = num;
@@ -27,10 +81,8 @@ $scope.setPage = function(index) {
 	$anchorScroll();
 	$scope.selected = index;	
 	stop = $interval(function() {
-
-
 	$scope.stopTimer();
-    }, 500);  
+    }, 500); 
 }
 $scope.stopTimer = function() {
       if (angular.isDefined(stop)) {
@@ -49,8 +101,6 @@ $scope.getNumber = function(num) {
     return jsonFactory.getNumberArray(num);
 }
 
-
-
 $scope.ukupno = 0;//Object.keys(jsonFactory.callback).length;
 $scope.portfolio ={};
 $scope.ukupno = jsonFactory.getUkupno();//Object.keys(jsonFactory.callback()).length;
@@ -65,7 +115,7 @@ $scope.getPagesNumber = function() {
 }
 });//////////end of controller///////
 
-myApp.factory('jsonFactory', function($http) {
+myApp.factory('jsonFactory', function($http) {/////////factory JSON
 	var callback=[];
 	var service = {};
 	var number = 4;
@@ -99,4 +149,7 @@ myApp.factory('jsonFactory', function($http) {
 	};
 	return service;
 
-});
+});/////end of service
+
+
+
