@@ -23,7 +23,31 @@ myApp.directive("footer", function() {
         templateUrl: 'template/footer.html'
     }
 });
+///////////test
+myApp.directive('myDirective', function($rootScope) {
+    return {
+        restrict: 'E',
+		templateUrl:'template/filter.html'
+    }
+});
+///////////end of test
+myApp.filter('myfilter', function() {  
+   return function(arr, item) {  
+		//console.log("broj "+item.length);  
+		//var items = [];
+		var args = Array.prototype.slice.call(arguments);
+		console.log("pp"+window[args[1]]); 
+		console.log("params"+item); 
+		/*$(portfolio).each(function (i, item) {
 
+			if (!$.inArray(item.title, portfolio) === 'filtertitle') {
+					
+				items.push(item);
+			}
+		});*/
+		return arr;
+   };  
+ });//////////////end of filter  
 myApp.filter('slicce', function() {
   return function(arr, start, end) {
   if(arr.length > 0){
@@ -103,7 +127,7 @@ $scope.getNumber = function(num) {
 
 $scope.ukupno = 0;//Object.keys(jsonFactory.callback).length;
 $scope.portfolio ={};
-$scope.ukupno = jsonFactory.getUkupno();//Object.keys(jsonFactory.callback()).length;
+//$scope.ukupno = jsonFactory.getUkupno();//Object.keys(jsonFactory.callback()).length;
 $scope.portfolio ={};
 jsonFactory.getJSONAsync(function(results) { 
 	$scope.portfolio = results;
@@ -128,10 +152,10 @@ myApp.factory('jsonFactory', function($http) {/////////factory JSON
 	service.getNumber = function(){
 			return number;
 	},
-	service.getPortfolio = function(){
+	/*service.getPortfolio = function(){
 		service.getJSONAsync(service.portfolio);
 		return portfolio;
-	},
+	},*/
 	service.getUkupno = function(){
 		ukupno = Object.keys(portfolio).length;
 		return ukupno;
