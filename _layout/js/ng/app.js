@@ -35,7 +35,7 @@ myApp.filter('slicce', function() {
 ///////////////menu controller
 myApp.controller('menuCtrl', function ($scope) {
 $scope.getPartial = function () {
-console.log('pera.html');
+//console.log('pera.html');
           return 'pera.html';
       }
     $scope.states = {};
@@ -53,6 +53,10 @@ console.log('pera.html');
         title: 'PORTFOLIO',
 		link:'portfolio.html'
     }, {
+        id: 'usluge',
+        title: 'USLUGE',
+		link:'usluge.html'
+    },{
         id: 'onama',
         title: 'O NAMA',
 		link:'onama.html'
@@ -150,6 +154,3 @@ myApp.factory('jsonFactory', function($http) {/////////factory JSON
 	return service;
 
 });/////end of service
-
-
-

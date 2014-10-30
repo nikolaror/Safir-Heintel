@@ -8,7 +8,7 @@
     
     
 	<title> HEINTEL </title>
-	<meta name="description" content=" add description  ... ">
+	<meta name="description" content=" HEINTEL, Srbija, Medicina, Beograd, Mamasafe ">
     
     <!-- /// Favicons ////////  -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144-precomposed.png">
@@ -44,7 +44,17 @@
     <script src="_layout/js/modernizr-2.6.2.min.js"></script>
  
 	<link rel="stylesheet" type="text/css" href="_layout/js/switcher/switcher.css">
- 
+		
+	
+	    <!-- /// jQuery ////////  -->
+	<script src="_layout/js/jquery-2.1.0.min.js"></script>
+	    <!-- /// bxSlider ////////  -->
+	<script src="_layout/js/bxslider/jquery.bxslider.min.js"></script>
+	<!-- /// flexslider ////////  -->
+	<script src="_layout/js/jquery.flexslider.js"></script>
+	<link rel="stylesheet" type="text/css" href="_layout/css/flex/flexslider.css">
+	<link rel="stylesheet" type="text/css" href="_layout/css/flex/flexslider.less">
+	<!-- /// end flexslider ////////  -->
 </head>
 <body ng-app="myApp">
 
@@ -60,7 +70,6 @@
 		<div  ng-include="'template/header.html'" onLoad="type='index'"></div>
 		<!--end header-->
 		<div id="content">
-		
 		<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			
             <div class="fullwidthbanner-container">
@@ -167,7 +176,7 @@ Posedujemo veliki spektar profesionalnih usluga i proizvoda!
                                     urna, at pharetra nisl vehicula lacinia phasellus suscipit vulputate<br> 
                                     felis nulla ac aliquet lorem etiam mauris lacus.
                             </div>
-                            
+                            ;
                             <div class="caption sfl" 
                                 data-x="50" 
                                 data-y="235" 
@@ -408,7 +417,7 @@ Mi ćemo biti <span>kompetetan savetnik i partner</span><br> u rešavanju vaših
 Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Austrija koja važi za lidera na teritoriji čitave Evrope.  Osnovna delatnost Heintel-a bazirana je na polju medicine i farmacije.</p>
                     
                     <p class="text-right">
-                    	<a class="btn btn-green-dark" href="#">Pročitajte više</a>
+                    	<a class="btn btn-green-dark" href="onama.html">Pročitajte više</a>
                     </p>
                     
                 </div><!-- end .span6 -->
@@ -438,7 +447,7 @@ Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Aust
                                 
                                 <div class="portfolio-item-description hidden-tablet">
                         
-                                    <h4 class="text-uppercase"><a href="about-us.html" style="color:#fff; margin-top:50px;">pročitajte više</a></h4>
+                                    <h4 class="text-uppercase"><a href="onama.html" style="color:#fff; margin-top:50px;">pročitajte više</a></h4>
 
                                 
                                 </div><!-- end .portfolio-item-description -->
@@ -484,12 +493,9 @@ Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Aust
                             </ul>
                         </div><!-- end .span12 -->
                     </div><!-- end. row -->  
-                    <div class="row">
-                        <div class="span12">
-                        
-                        	<br><br>
-                            
-                            <ul class="client-logo">
+					<div class="row" >
+						<div class="span12 flexslider">
+							<ul class="slides client-logo">
                                 <li>
                                     <a href ="https://www.vygon.de/"><img src="_content/index/logo/180x55-1.png" alt="https://www.vygon.de/"></a>
                                 </li>
@@ -527,8 +533,28 @@ Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Aust
                                     <a href ="http://www.curas.com/"><img src="_content/index/logo/180x55-12.png" alt="http://www.curas.com/"></a>
                                 </li>
                             </ul>
-                        </div><!-- end .span12 -->
-                    </div><!-- end. row -->  
+							<script>
+							$(window).load(function() {
+							  $('.flexslider').flexslider({
+								animation: "slide",
+								animationLoop: false,
+								itemWidth: 100,
+								itemMargin: 8,
+								controlNav: false,
+								manualControls:"",
+								minItems: getGridSize(), // use function to pull in initial value
+								maxItems: getGridSize() 
+							  });
+							});
+							function getGridSize() {
+								return (window.innerWidth < 600) ? 2 :
+									   (window.innerWidth < 900) ? 3 : 4;
+							  }
+							</script>
+							<!-- bxslider -->
+
+						</div><!-- end .span12 -->
+					</div><!-- end .row -->				
                 <!--/div><!-- end .box-overlay -->
 		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 		</div><!-- end #content -->
@@ -539,13 +565,12 @@ Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Aust
 	</div><!-- end #wrap -->
 
 
-    <!-- /// jQuery ////////  -->
-	<script src="_layout/js/jquery-2.1.0.min.js"></script>
+
   	<!-- /// AngularJS ////////  -->
 	<script src="_layout/js/ng/angular.min.js"></script>
 	<script src="_layout/js/ng/app.js"></script>
-
 	<!--////////////////////////////////////////-->
+
     <!-- /// ViewPort ////////  -->
 	<script src="_layout/js/viewport/jquery.viewport.js"></script>
     
@@ -566,8 +591,7 @@ Kada je u pitanju promet medicinskim sredstvima podršku nam pruža Heintel Aust
     <script src="_layout/js/revolutionslider/pluginsources/jquery.themepunch.plugins.min.js"></script>
     <script src="_layout/js/revolutionslider/js/jquery.themepunch.revolution.min.js"></script>
     
-    <!-- /// bxSlider ////////  -->
-	<script src="_layout/js/bxslider/jquery.bxslider.min.js"></script>
+
     
    	<!-- /// Magnific Popup ////////  -->
 	<script src="_layout/js/magnificpopup/jquery.magnific-popup.min.js"></script>
