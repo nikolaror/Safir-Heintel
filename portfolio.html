@@ -54,9 +54,54 @@
     <![endif]-->
  
 	<div id="wrap"  ng-controller="portfolioCtrl">
-        <!--header-->
-		<div ng-include="'template/header.html'" onLoad="type='portfolio'"></div>
-		<!--end header-->
+		<div id="header">
+        
+		<!-- /// HEADER  //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+            
+            <div class="row">
+				<div class="span3">
+				
+					<!-- // Logo // -->
+					<a href="index.html" id="logo">
+                    	<img src="_layout/images/logo.png" alt="" class="responsive-img">
+                    </a>
+				
+				</div><!-- end .span3 -->
+				<div class="span9">
+				
+                	<!-- // Mobile menu trigger // -->
+                	<a href="#" id="mobile-menu-trigger">
+                    	<i class="fa fa-bars"></i>
+                    </a>
+                    
+					<!-- // Menu // -->
+					<ul class="sf-menu" id="menu">
+						<li class="current">
+                        	<a href="index.html">POČETAK</a>
+						</li>
+						<li>
+                        	<a href="profil.html">PROFIL</a>
+						</li>
+						<li>
+                        	<a href="portfolio.html">PORTFOLIO</a>
+						</li>
+						<li>
+                        	<a href="usluge.html">USLUGE</a>
+						</li>
+						<li>
+                        	<a href="onama.html">O NAMA</a>
+						</li>
+						<li>
+                        	<a href="kontakt.php">KONTAKT</a>
+						</li>
+					</ul>
+
+				</div><!-- end .span9 -->
+			</div><!-- end .row -->		
+
+		<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+		</div><!-- end #header -->
 		<div id="content">
 		<!-- /// CONTENT  /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
